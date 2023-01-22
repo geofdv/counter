@@ -20,4 +20,4 @@ deps.mk: $(SRCMODULES)
 	$(CC) -MM $^ > $@
 
 clean:
-	rm -f *.o a.out
+	rm -f *.o exe
