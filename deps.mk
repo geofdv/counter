@@ -1,1 +1,1 @@
-counter.o: counter.c counter.h types.h
+counter.o: counter.c counter.h

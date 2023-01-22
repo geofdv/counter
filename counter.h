@@ -1,10 +1,14 @@
 #ifndef SENTRY_COUNTER_H
 #define SENTRY_COUNTER_H
 
-#include "types.h"
-
 struct counter {
 	int acc;
+};
+
+struct counter_res {
+	int value;
+	int has_err;
+	char const *info;
 };
 
 struct counter_res counter_init(struct counter *c);
