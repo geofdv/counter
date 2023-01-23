@@ -10,18 +10,18 @@
 int
 has_error(counter_res_t r)
 {
-	return r.has_err != 0;
+	return r.error.has != 0;
 }
 
 void
 print_error(counter_res_t r)
 {
-	if (r.info == NULL) {
+	if (r.error.info == NULL) {
 		printf("no errors\n");
 		return;
 	}
 		
-	printf("error: %s\n", r.info);
+	printf("error: %s\n", r.error.info);
 }
 
 int
@@ -38,7 +38,6 @@ main(int argc, char *argv[])
 		return -1;
 	}
 
-	/**/
 	result = counter_count_to(&c1, count_limit);
 	if (has_error(result)) {
 		print_error(result);
@@ -52,8 +51,16 @@ main(int argc, char *argv[])
 		return -3;
 	}
 
-	printf("count: %d\n", result.value);
-	/**/
+	printf("count: %ld\n", result.value);
+
+
+	result = counter_reset(&c1);
+	if (has_error(result)) {
+		print_error(result);
+		return -4;
+	}
+
+	printf("value after reset: %ld\n", result.value);
 
 	return 0;
 }
