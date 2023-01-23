@@ -8,13 +8,13 @@
 
 
 int
-has_error(struct counter_res r)
+has_error(counter_res_t r)
 {
 	return r.has_err != 0;
 }
 
 void
-print_error(struct counter_res r)
+print_error(counter_res_t r)
 {
 	if (r.info == NULL) {
 		printf("no errors\n");
@@ -28,9 +28,9 @@ int
 main(int argc, char *argv[])
 {
 	enum { count_limit = 3 };
-	struct counter c1;
+	counter_t c1;
 
-	struct counter_res result;
+	counter_res_t result;
 
 	result = counter_init(&c1);
 	if (has_error(result)) {

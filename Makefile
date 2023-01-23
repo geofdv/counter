@@ -10,7 +10,9 @@ exe: main.c $(OBJMODULES)
 	$(CC) $(CFLAGS) $^ -o $@
 
 run: exe
-	./exe
+	@./exe
+
+test: run clean
 
 ifneq (clean, $(SRCMODULES))
 -include deps.mk
@@ -20,4 +22,4 @@ deps.mk: $(SRCMODULES)
 	$(CC) -MM $^ > $@
 
 clean:
-	rm -f *.o exe
+	@rm -f *.o exe

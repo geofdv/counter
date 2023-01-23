@@ -2,13 +2,13 @@
 
 #include "counter.h"
 
-static const struct counter_res error_empty_counter = {
+static const counter_res_t error_empty_counter = {
 	.has_err = 1,
 	.info = "the empty counter pointer was passed"
 };
 
-struct counter_res
-counter_init(struct counter *c)
+counter_res_t
+counter_init(counter_t *c)
 {
 	if (c == NULL) {
 		return error_empty_counter;
@@ -16,14 +16,14 @@ counter_init(struct counter *c)
 
 	c->acc = 0;
 
-	return (struct counter_res){
+	return (counter_res_t){
 		.value   = 0,
 		.has_err = 0
 	};
 }
 
-struct counter_res
-counter_inc(struct counter *c)
+counter_res_t
+counter_inc(counter_t *c)
 {
 	if (c == NULL) {
 		return error_empty_counter;
@@ -31,27 +31,27 @@ counter_inc(struct counter *c)
 
 	c->acc++;
 
-	return (struct counter_res) {
+	return (counter_res_t) {
 		.value   = c->acc,
 		.has_err = 0
 	};
 }
 
-struct counter_res
-counter_amount(struct counter *c)
+counter_res_t
+counter_amount(counter_t *c)
 {
 	if (c == NULL) {
 		return error_empty_counter;
 	}
 
-	return (struct counter_res) {
+	return (counter_res_t) {
 		.value   = c->acc,
 		.has_err = 0
 	};
 }
 
-struct counter_res
-counter_count_to(struct counter *c, size_t limit)
+counter_res_t
+counter_count_to(counter_t *c, size_t limit)
 {
 	if (c == NULL) {
 		return error_empty_counter;
@@ -61,7 +61,7 @@ counter_count_to(struct counter *c, size_t limit)
 		counter_inc(c);
 	}
 
-	return (struct counter_res) {
+	return (counter_res_t) {
 		.value   = c->acc,
 		.has_err = 0
 	};

@@ -1,22 +1,22 @@
 #ifndef SENTRY_COUNTER_H
 #define SENTRY_COUNTER_H
 
-struct counter {
+typedef struct {
 	int acc;
-};
+} counter_t;
 
-struct counter_res {
+typedef struct {
 	int value;
 	int has_err;
 	char const *info;
-};
+} counter_res_t;
 
-struct counter_res counter_init(struct counter *c);
+counter_res_t counter_init(counter_t *c);
 
-struct counter_res counter_inc(struct counter *c);
+counter_res_t counter_inc(counter_t *c);
 
-struct counter_res counter_amount(struct counter *c);
+counter_res_t counter_amount(counter_t *c);
 
-struct counter_res counter_count_to(struct counter *c, size_t limit);
+counter_res_t counter_count_to(counter_t *c, size_t limit);
 
 #endif // SENTRY_COUNTER_H 
