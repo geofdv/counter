@@ -1,3 +1,3 @@
 # Just a counter
 
-Perhaps this program will be expanded later
+Perhaps this example will be expanded later
