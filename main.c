@@ -5,24 +5,7 @@
 #include <sys/stat.h>
 
 #include "counter.h"
-
-
-int
-has_error(counter_res_t r)
-{
-	return r.error.has != 0;
-}
-
-void
-print_error(counter_res_t r)
-{
-	if (r.error.info == NULL) {
-		printf("no errors\n");
-		return;
-	}
-		
-	printf("error: %s\n", r.error.info);
-}
+#include "utils.h"
 
 int
 main(int argc, char *argv[])
@@ -44,7 +27,6 @@ main(int argc, char *argv[])
 		return -2;
 	}
 
-
 	result = counter_amount(&c1);
 	if (has_error(result)) {
 		print_error(result);
@@ -52,7 +34,6 @@ main(int argc, char *argv[])
 	}
 
 	printf("count: %ld\n", result.value);
-
 
 	result = counter_reset(&c1);
 	if (has_error(result)) {

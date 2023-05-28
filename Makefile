@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Werror -g -pedantic -DLINUX -D_GNU_SOURCE
-SRCMODULES = counter.c
+SRCMODULES = counter.c utils.c
 OBJMODULES = $(SRCMODULES:.c=.o)
 
 %.o: %.c %.h
