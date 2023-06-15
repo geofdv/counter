@@ -11,9 +11,9 @@ int
 main(int argc, char *argv[])
 {
 	enum { count_limit = 3 };
-	counter_t c1;
 
-	counter_res_t result;
+	counter_t 			c1;
+	counter_res_t	result;
 
 	result = counter_init(&c1);
 	if (has_error(result)) {
@@ -33,7 +33,7 @@ main(int argc, char *argv[])
 		return -3;
 	}
 
-	printf("count: %ld\n", result.value);
+	printf("counter containts %ld as a value\n", result.value);
 
 	result = counter_reset(&c1);
 	if (has_error(result)) {
