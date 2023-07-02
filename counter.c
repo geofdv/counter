@@ -21,13 +21,13 @@ static const counter_res_t counter_error_overflow = {
 counter_res_t
 counter_init(counter_t *c)
 {
-	if (c == NULL) {
+	if (NULL == c) {
 		return counter_error_empty;
 	}
 
 	c->acc = 0;
 
-	return (counter_res_t){
+	return (counter_res_t) {
 		.value     = 0,
 		.error.has = 0
 	};
@@ -36,7 +36,7 @@ counter_init(counter_t *c)
 counter_res_t
 counter_inc(counter_t *c)
 {
-	if (c == NULL) {
+	if (NULL == c) {
 		return counter_error_empty;
 	}
 
@@ -55,7 +55,7 @@ counter_inc(counter_t *c)
 counter_res_t
 counter_amount(counter_t *c)
 {
-	if (c == NULL) {
+	if (NULL == c) {
 		return counter_error_empty;
 	}
 
@@ -68,7 +68,7 @@ counter_amount(counter_t *c)
 counter_res_t
 counter_count_to(counter_t *c, size_t limit)
 {
-	if (c == NULL) {
+	if (NULL == c) {
 		return counter_error_empty;
 	}
 
@@ -92,7 +92,7 @@ counter_count_to(counter_t *c, size_t limit)
 counter_res_t
 counter_reset(counter_t *c)
 {
-	if (c == NULL) {
+	if (NULL == c) {
 		return counter_error_empty;
 	}
 
