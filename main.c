@@ -4,7 +4,7 @@
 #include "utils.h"
 
 int
-main(int argc, char *argv[])
+main()
 {
 	enum { count_limit = 3 };
 
