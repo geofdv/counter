@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <stdlib.h>
 
 #include "counter.h"
 
@@ -17,6 +18,25 @@ static const counter_res_t counter_error_overflow = {
 	.error.type = OVERFLOW,
 	.error.info = "counter overflow"
 };
+
+/*
+  we don't use counter_res_t as the return type here,
+  because we assume that bad result of malloc call it's not a "counter" type error,
+  it's error of runtime (OS).
+*/
+counter_t *
+create_counter()
+{
+	counter_t *c = malloc(sizeof(*c));
+
+	return c;
+}
+
+void
+destroy_counter(counter_t *c)
+{
+	free(c);
+}
 
 counter_res_t
 counter_init(counter_t *c)
@@ -42,7 +62,7 @@ counter_inc(counter_t *c)
 
 	c->acc++;
 
-	if (c->acc < 0) {
+	if (c->acc == 0) {
 		return counter_error_overflow;
 	}
 

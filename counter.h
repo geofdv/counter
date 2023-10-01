@@ -2,7 +2,7 @@
 #define SENTRY_COUNTER_H
 
 typedef struct {
-	long acc;
+	unsigned long acc;
 } counter_t;
 
 typedef enum {
@@ -22,13 +22,17 @@ typedef struct {
 
 } counter_res_t;
 
+counter_t *create_counter();
+
+void destroy_counter(counter_t *c);
+
 counter_res_t counter_init(counter_t *c);
+
+counter_res_t counter_reset(counter_t *c);
 
 counter_res_t counter_inc(counter_t *c);
 
 counter_res_t counter_amount(counter_t *c);
-
-counter_res_t counter_reset(counter_t *c);
 
 counter_res_t counter_count_to(counter_t *c, size_t limit);
 

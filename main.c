@@ -8,36 +8,42 @@ main()
 {
 	enum { count_limit = 3 };
 
-	counter_t           c1;
+	counter_t           *c1;
 	counter_res_t   result;
 
-	result = counter_init(&c1);
-	if (has_error(result)) {
-		print_error(result);
-		return -1;
+	c1 = create_counter();
+	if (!c1) {
+		printf("malloc error\n");
+		return 1;
 	}
 
-	result = counter_count_to(&c1, count_limit);
+	result = counter_init(c1);
 	if (has_error(result)) {
 		print_error(result);
-		return -2;
+		return 2;
 	}
 
-	result = counter_amount(&c1);
+	result = counter_count_to(c1, count_limit);
 	if (has_error(result)) {
 		print_error(result);
-		return -3;
+		return 3;
 	}
 
+	result = counter_amount(c1);
+	if (has_error(result)) {
+		print_error(result);
+		return 4;
+	}
 	printf("counter containts %ld as a value\n", result.value);
 
-	result = counter_reset(&c1);
+	result = counter_reset(c1);
 	if (has_error(result)) {
 		print_error(result);
-		return -4;
+		return 5;
 	}
-
 	printf("value after reset: %ld\n", result.value);
+
+	destroy_counter(c1);
 
 	return 0;
 }

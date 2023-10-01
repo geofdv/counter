@@ -14,6 +14,9 @@ run: exe
 
 test: run clean
 
+memcheck: exe
+	valgrind ./exe
+
 ifneq (clean, $(SRCMODULES))
 -include deps.mk
 endif
