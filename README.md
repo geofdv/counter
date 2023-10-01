@@ -1,5 +1,5 @@
 # Just a counter
 
-Now this repo is on hold.
+Basically, this is a simple example of designing a program using C.
 
-Perhaps this example will be expanded later.
+Perhaps this example will be expand later
