@@ -1,5 +1,5 @@
 # Just a counter
 
-Basically, this is a simple example of designing a program using C.
+Actually, it's just a sample of how you can design a program in C.
 
-Perhaps this example will be expand later
+Perhaps this example will be expand later.

@@ -9,8 +9,8 @@ main()
 	enum { count_limit = 3 };
 
 	counter_t           *c1;
-	counter_res_t		res;
-	uint64_t			value;
+	counter_res_t       res;
+	uint64_t            value;
 
 	c1 = counter_create();
 	if (!c1) {
