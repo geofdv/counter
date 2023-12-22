@@ -16,9 +16,9 @@ typedef enum {
 typedef struct {
 
 	struct {
-		int				has;
-		counter_err_t	type;
-		const char*		info;
+		int             has;
+		counter_err_t   type;
+		const char*     info;
 	} error;
 
 } counter_res_t;
