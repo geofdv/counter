@@ -1,30 +1,31 @@
 #ifndef SENTRY_COUNTER_H
 #define SENTRY_COUNTER_H
 
+#include <stdint.h>
+
 typedef struct {
-	unsigned long acc;
+	uint64_t acc;
 } counter_t;
 
 typedef enum {
 	NO_ERROR =  0,
 	OVERFLOW = -1,
 	EMPTY    = -2
-} counter_error_t;
+} counter_err_t;
 
 typedef struct {
-	long value;
 
 	struct {
-		int              has;
-		counter_error_t  type;
-		char const*      info;
+		int				has;
+		counter_err_t	type;
+		const char*		info;
 	} error;
 
 } counter_res_t;
 
-counter_t *create_counter();
+counter_t *counter_create();
 
-void destroy_counter(counter_t *c);
+void counter_destroy(counter_t *c);
 
 counter_res_t counter_init(counter_t *c);
 
@@ -32,7 +33,7 @@ counter_res_t counter_reset(counter_t *c);
 
 counter_res_t counter_inc(counter_t *c);
 
-counter_res_t counter_amount(counter_t *c);
+counter_res_t counter_amount(const counter_t *c, uint64_t *val);
 
 counter_res_t counter_count_to(counter_t *c, size_t limit);
 

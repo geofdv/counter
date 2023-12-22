@@ -9,41 +9,48 @@ main()
 	enum { count_limit = 3 };
 
 	counter_t           *c1;
-	counter_res_t   result;
+	counter_res_t		res;
+	uint64_t			value;
 
-	c1 = create_counter();
+	c1 = counter_create();
 	if (!c1) {
-		printf("malloc error\n");
+		fprintf(stderr, "malloc error\n");
 		return 1;
 	}
 
-	result = counter_init(c1);
-	if (has_error(result)) {
-		print_error(result);
+	res = counter_init(c1);
+	if (has_error(res)) {
+		print_error(res);
 		return 2;
 	}
 
-	result = counter_count_to(c1, count_limit);
-	if (has_error(result)) {
-		print_error(result);
+	res = counter_count_to(c1, count_limit);
+	if (has_error(res)) {
+		print_error(res);
 		return 3;
 	}
 
-	result = counter_amount(c1);
-	if (has_error(result)) {
-		print_error(result);
+	res = counter_amount(c1, &value);
+	if (has_error(res)) {
+		print_error(res);
 		return 4;
 	}
-	printf("counter containts %ld as a value\n", result.value);
+	printf("counter containts %ld\n", value);
 
-	result = counter_reset(c1);
-	if (has_error(result)) {
-		print_error(result);
+	res = counter_reset(c1);
+	if (has_error(res)) {
+		print_error(res);
 		return 5;
 	}
-	printf("value after reset: %ld\n", result.value);
 
-	destroy_counter(c1);
+	res = counter_amount(c1, &value);
+	if (has_error(res)) {
+		print_error(res);
+		return 4;
+	}
+	printf("counter containts %ld after reset\n", value);
+
+	counter_destroy(c1);
 
 	return 0;
 }

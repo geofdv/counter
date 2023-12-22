@@ -4,6 +4,6 @@
 #include "counter.h"
 
 int has_error(counter_res_t r);
-void print_error(counter_res_t r);
+int print_error(counter_res_t r);
 
 #endif // SENTRY_UTILS_H

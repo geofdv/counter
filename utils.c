@@ -9,13 +9,12 @@ has_error(counter_res_t r)
 	return r.error.has != 0;
 }
 
-void
+int
 print_error(counter_res_t r)
 {
 	if (r.error.info == NULL) {
-		printf("no errors\n");
-		return;
+		return 0;
 	}
 
-	printf("error: %s\n", r.error.info);
+	return fprintf(stderr, "error: %s\n", r.error.info);
 }
