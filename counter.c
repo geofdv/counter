@@ -15,6 +15,12 @@ static const counter_res_t counter_overflow = {
 	.error.info = "counter overflow"
 };
 
+static const counter_res_t counter_unknown = {
+	.error.has  = 1,
+	.error.type = UNKNOWN,
+	.error.info = "impossible sitation"
+};
+
 static const counter_res_t counter_success = {
 	.error.has = 0
 };
@@ -85,6 +91,8 @@ counter_count_to(counter_t *c, size_t limit)
 		if (res.error.has) {
 			if (res.error.type == OVERFLOW) {
 				return counter_overflow;
+			} else {
+				return counter_unknown;
 			}
 		}
 	}
