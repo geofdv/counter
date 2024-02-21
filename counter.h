@@ -24,18 +24,21 @@ typedef struct {
 
 } counter_res_t;
 
+/* Lifetime managment. */
 counter_t *counter_create();
 
 void counter_destroy(counter_t *c);
 
+/* Modifiers. */
 counter_res_t counter_init(counter_t *c);
 
 counter_res_t counter_reset(counter_t *c);
 
 counter_res_t counter_inc(counter_t *c);
 
-counter_res_t counter_amount(const counter_t *c, uint64_t *val);
-
 counter_res_t counter_count_to(counter_t *c, size_t limit);
+
+/* State. */
+counter_res_t counter_amount(const counter_t *c, uint64_t *val);
 
 #endif // SENTRY_COUNTER_H 
