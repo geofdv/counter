@@ -7,8 +7,8 @@
 const char *err_messages[] = {
 	"no errors",
 	"impossible sitation",
-	"counter overflow"
-	"the empty counter pointer was passed",
+	"counter overflow",
+	"the empty counter pointer was passed"
 };
 
 /* TODO: out of bound check */
