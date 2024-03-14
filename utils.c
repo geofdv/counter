@@ -6,15 +6,13 @@
 int
 has_error(counter_res_t r)
 {
-	return r.error.has != 0;
+	return r.errcode != NO_ERROR;
 }
 
 int
 print_error(counter_res_t r)
 {
-	if (r.error.info == NULL) {
-		return 0;
-	}
+	const char *msg = get_error_message(r.errcode);
 
-	return fprintf(stderr, "error: %s\n", r.error.info);
+	return fprintf(stderr, "error: %s\n", msg);
 }

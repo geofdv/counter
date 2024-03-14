@@ -8,20 +8,14 @@ typedef struct {
 } counter_t;
 
 typedef enum {
-	NO_ERROR =  0,
-	UNKNOWN  = -1,
-	OVERFLOW = -2,
-	EMPTY    = -3
+	NO_ERROR = 0,
+	UNKNOWN  = 1,
+	OVERFLOW = 2,
+	EMPTY    = 3
 } counter_err_t;
 
 typedef struct {
-
-	struct {
-		int             has;
-		counter_err_t   type;
-		const char*     info;
-	} error;
-
+	counter_err_t errcode;
 } counter_res_t;
 
 /* Lifetime managment. */
@@ -40,5 +34,8 @@ counter_res_t counter_count_to(counter_t *c, size_t limit);
 
 /* State. */
 counter_res_t counter_amount(const counter_t *c, uint64_t *val);
+
+/* Info. */
+const char *get_error_message(counter_err_t errcode);
 
 #endif // SENTRY_COUNTER_H 

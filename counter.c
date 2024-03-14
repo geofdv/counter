@@ -3,27 +3,38 @@
 
 #include "counter.h"
 
+/* Errors processing. */
+const char *err_messages[] = {
+	"no errors",
+	"impossible sitation",
+	"the empty counter pointer was passed",
+	"counter overflow"
+};
+
+/* TODO: out of bound check */
+const char *
+get_error_message(counter_err_t errcode)
+{
+	return err_messages[errcode];
+}
+
 static const counter_res_t counter_empty = {
-	.error.has  = 1,
-	.error.type = EMPTY,
-	.error.info = "the empty counter pointer was passed"
+	.errcode = EMPTY
 };
 
 static const counter_res_t counter_overflow = {
-	.error.has  = 1,
-	.error.type = OVERFLOW,
-	.error.info = "counter overflow"
+	.errcode = OVERFLOW
 };
 
 static const counter_res_t counter_unknown = {
-	.error.has  = 1,
-	.error.type = UNKNOWN,
-	.error.info = "impossible sitation"
+	.errcode = EMPTY
 };
 
 static const counter_res_t counter_success = {
-	.error.has = 0
+	.errcode = NO_ERROR
 };
+
+/* Public api. */
 
 counter_t *
 counter_create()
@@ -88,8 +99,8 @@ counter_count_to(counter_t *c, size_t limit)
 	for (size_t i = 0; i < limit; i++) {
 		counter_res_t res;
 		res = counter_inc(c);
-		if (res.error.has) {
-			if (res.error.type == OVERFLOW) {
+		if (res.errcode != NO_ERROR) {
+			if (res.errcode == OVERFLOW) {
 				return counter_overflow;
 			} else {
 				return counter_unknown;
