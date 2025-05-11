@@ -69,10 +69,11 @@ counter_inc(counter_t *c)
 		return counter_empty;
 	}
 
-	c->acc++;
-	if (c->acc == 0) {
+	if (c->acc == UINT64_MAX) {
 		return counter_overflow;
 	}
+
+	c->acc++;
 
 	return counter_success;
 }
@@ -90,13 +91,13 @@ counter_amount(const counter_t *c, uint64_t *val)
 }
 
 counter_res_t
-counter_count_to(counter_t *c, size_t limit)
+counter_count_to(counter_t *c, uint64_t limit)
 {
 	if (!c) {
 		return counter_empty;
 	}
 
-	for (size_t i = 0; i < limit; i++) {
+	for (uint64_t i = 0; i < limit; ++i) {
 		counter_res_t res;
 		res = counter_inc(c);
 		if (res.errcode != NO_ERROR) {
