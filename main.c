@@ -35,7 +35,7 @@ main()
 		print_error(res);
 		return 4;
 	}
-	printf("counter containts %ld\n", value);
+	printf("counter contains %ld\n", value);
 
 	res = counter_reset(c1);
 	if (has_error(res)) {
@@ -48,7 +48,7 @@ main()
 		print_error(res);
 		return 4;
 	}
-	printf("counter containts %ld after reset\n", value);
+	printf("counter contains %ld after reset\n", value);
 
 	counter_destroy(c1);
 
