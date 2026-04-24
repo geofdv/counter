@@ -9,9 +9,9 @@ typedef struct {
 
 typedef enum {
 	NO_ERROR = 0,
-	UNKNOWN  = 1,
+	NULL_PTR = 1,
 	OVERFLOW = 2,
-	NULL_PTR = 3
+	UNKNOWN  = 3
 } counter_err_t;
 
 typedef struct {

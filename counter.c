@@ -6,9 +6,9 @@
 /* Errors processing. */
 const char *err_messages[] = {
 	[NO_ERROR] = "no errors",
-	[UNKNOWN] = "impossible sitation",
+	[NULL_PTR] = "null pointer was passed",
 	[OVERFLOW] = "counter overflow",
-	[NULL_PTR] = "null pointer was passed"
+	[UNKNOWN] = "impossible sitation"
 };
 
 /* TODO: out of bound check */
@@ -17,6 +17,10 @@ get_error_message(counter_err_t errcode)
 {
 	return err_messages[errcode];
 }
+
+static const counter_res_t counter_success = {
+	.errcode = NO_ERROR
+};
 
 static const counter_res_t counter_null_ptr = {
 	.errcode = NULL_PTR
@@ -28,10 +32,6 @@ static const counter_res_t counter_overflow = {
 
 static const counter_res_t counter_unknown = {
 	.errcode = UNKNOWN
-};
-
-static const counter_res_t counter_success = {
-	.errcode = NO_ERROR
 };
 
 /* Public api. */
