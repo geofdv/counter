@@ -5,10 +5,10 @@
 
 /* Errors processing. */
 const char *err_messages[] = {
-	"no errors",
-	"impossible sitation",
-	"counter overflow",
-	"the empty counter pointer was passed"
+	[NO_ERROR] = "no errors",
+	[UNKNOWN] = "impossible sitation",
+	[OVERFLOW] = "counter overflow",
+	[NULL_PTR] = "null pointer was passed"
 };
 
 /* TODO: out of bound check */
@@ -18,8 +18,8 @@ get_error_message(counter_err_t errcode)
 	return err_messages[errcode];
 }
 
-static const counter_res_t counter_empty = {
-	.errcode = EMPTY
+static const counter_res_t counter_null_ptr = {
+	.errcode = NULL_PTR
 };
 
 static const counter_res_t counter_overflow = {
@@ -27,7 +27,7 @@ static const counter_res_t counter_overflow = {
 };
 
 static const counter_res_t counter_unknown = {
-	.errcode = EMPTY
+	.errcode = UNKNOWN
 };
 
 static const counter_res_t counter_success = {
@@ -54,7 +54,7 @@ counter_res_t
 counter_init(counter_t *c)
 {
 	if (!c) {
-		return counter_empty;
+		return counter_null_ptr;
 	}
 
 	c->acc = 0;
@@ -66,7 +66,7 @@ counter_res_t
 counter_inc(counter_t *c)
 {
 	if (!c) {
-		return counter_empty;
+		return counter_null_ptr;
 	}
 
 	if (c->acc == UINT64_MAX) {
@@ -82,7 +82,7 @@ counter_res_t
 counter_amount(const counter_t *c, uint64_t *val)
 {
 	if (!c) {
-		return counter_empty;
+		return counter_null_ptr;
 	}
 
 	*val = c->acc;
@@ -94,7 +94,7 @@ counter_res_t
 counter_count_to(counter_t *c, uint64_t limit)
 {
 	if (!c) {
-		return counter_empty;
+		return counter_null_ptr;
 	}
 
 	for (uint64_t i = 0; i < limit; ++i) {
@@ -117,7 +117,7 @@ counter_res_t
 counter_reset(counter_t *c)
 {
 	if (!c) {
-		return counter_empty;
+		return counter_null_ptr;
 	}
 
 	c->acc = 0;

@@ -11,7 +11,7 @@ typedef enum {
 	NO_ERROR = 0,
 	UNKNOWN  = 1,
 	OVERFLOW = 2,
-	EMPTY    = 3
+	NULL_PTR = 3
 } counter_err_t;
 
 typedef struct {
@@ -30,7 +30,7 @@ counter_res_t counter_reset(counter_t *c);
 
 counter_res_t counter_inc(counter_t *c);
 
-counter_res_t counter_count_to(counter_t *c, size_t limit);
+counter_res_t counter_count_to(counter_t *c, uint64_t limit);
 
 /* State. */
 counter_res_t counter_amount(const counter_t *c, uint64_t *val);
