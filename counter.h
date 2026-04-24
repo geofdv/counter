@@ -10,8 +10,7 @@ typedef struct {
 typedef enum {
 	NO_ERROR = 0,
 	NULL_PTR = 1,
-	OVERFLOW = 2,
-	UNKNOWN  = 3
+	OVERFLOW = 2
 } counter_err_t;
 
 typedef struct {
@@ -26,11 +25,13 @@ void counter_destroy(counter_t *c);
 /* Modifiers. */
 counter_res_t counter_init(counter_t *c);
 
+counter_res_t counter_set(counter_t *c, uint64_t limit);
+
 counter_res_t counter_reset(counter_t *c);
 
 counter_res_t counter_inc(counter_t *c);
 
-counter_res_t counter_count_to(counter_t *c, uint64_t limit);
+counter_res_t counter_add(counter_t *c, uint64_t limit);
 
 /* State. */
 counter_res_t counter_amount(const counter_t *c, uint64_t *val);

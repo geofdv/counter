@@ -24,7 +24,7 @@ main()
 		return 2;
 	}
 
-	res = counter_count_to(c1, count_limit);
+	res = counter_set(c1, count_limit);
 	if (has_error(res)) {
 		print_error(res);
 		return 3;
@@ -35,7 +35,7 @@ main()
 		print_error(res);
 		return 4;
 	}
-	printf("counter contains %ld\n", value);
+	printf("counter contains %lu\n", value);
 
 	res = counter_reset(c1);
 	if (has_error(res)) {
@@ -48,7 +48,7 @@ main()
 		print_error(res);
 		return 4;
 	}
-	printf("counter contains %ld after reset\n", value);
+	printf("counter contains %lu after reset\n", value);
 
 	counter_destroy(c1);
 
